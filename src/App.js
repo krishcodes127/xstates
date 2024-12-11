@@ -37,6 +37,7 @@ fetch(`https://crio-location-selector.onrender.com/country=${selCountry}/state=$
 
 
 console.log(selCountry,selState);
+const cityOptions = Array.isArray(cities) ? cities : [];
   return (
     <div>
     <select 
@@ -68,14 +69,16 @@ console.log(selCountry,selState);
     value={selCity} 
     onChange={(e)=>setCities(e.target.value)}>
 
-  <option >Select City</option>
-
-  {cities.map((city)=> 
-  <option value ={city} key={city}>{city}</option>)}
+   <option value="">Select City</option>
+        {cityOptions.map((city) => (
+          <option value={city} key={city}>
+            {city}
+          </option>
+        ))}
 
     </select>
 
-    <h2>"You Selected ${selCity}, ${selState}, ${selCountry}":</h2>
+    <h2>{`You Selected ${selCity}, ${selState}, ${selCountry}`}</h2>
 
     </div>
   )
